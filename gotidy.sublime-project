@@ -220,8 +220,8 @@
 						"selection":
 						[
 							[
-								0,
-								0
+								328,
+								328
 							]
 						],
 						"settings":
@@ -229,7 +229,7 @@
 							"syntax": "Packages/Go/Go.tmLanguage"
 						},
 						"translation.x": 0,
-						"translation.y": 0,
+						"translation.y": 440,
 						"zoom_level": 1
 					},
 					"type": "text"
@@ -237,7 +237,7 @@
 			]
 		},
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{

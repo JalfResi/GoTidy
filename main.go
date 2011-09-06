@@ -36,8 +36,7 @@ func Tidy(htmlSource string) (string, os.Error) {
 	}
 
 	if rc >= 0 {
-		in := _Ctypedef_tmbchar(*input)
-    	rc = C.tidyParseString( tdoc, &in )	// Parse the input
+    	rc = C.tidyParseString( tdoc, (*_Ctypedef_tmbchar)(input) )	// Parse the input
     }
 
 	if rc >= 0 {
@@ -59,12 +58,10 @@ func Tidy(htmlSource string) (string, os.Error) {
     }
 
 	if rc >= 0 {
-    	out := _Ctype_char(*output.bp)
     	if rc > 0 {
-    		err := _Ctype_char(*errbuf.bp)
-    		return C.GoStringN(&out, _Ctype_int(output.size)), os.NewError(C.GoStringN(&err, _Ctype_int(errbuf.size)))
+    		return C.GoStringN((*C.char)(unsafe.Pointer(output.bp)), C.int(output.size)), os.NewError(C.GoStringN((*C.char)(unsafe.Pointer(errbuf.bp)), C.int(errbuf.size)))
       	}
-		return C.GoStringN(&out, _Ctype_int(output.size)), nil
+		return C.GoStringN((*C.char)(unsafe.Pointer(output.bp)), C.int(output.size)), nil
   	}
     return "", os.NewSyscallError(fmt.Sprintf( "A severe error (%d) occurred.\n", int(rc) ), int(rc))
 }
