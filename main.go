@@ -2,7 +2,6 @@ package tidy
 
 /*
 #cgo CFLAGS: -I/usr/include
-#cgo LDFLAGS: -ltidy -L/usr/local/lib/libtidy.a
 #include <tidy.h>
 #include <buffio.h>
 #include <errno.h>
@@ -63,9 +62,9 @@ func Tidy(htmlSource string) (string, os.Error) {
     	out := _Ctype_char(*output.bp)
     	if rc > 0 {
     		err := _Ctype_char(*errbuf.bp)
-    		return C.GoString(&out), os.NewError(C.GoString(&err))
+    		return C.GoStringN(&out, _Ctype_int(output.size)), os.NewError(C.GoStringN(&err, _Ctype_int(errbuf.size)))
       	}
-		return C.GoString(&out), nil
+		return C.GoStringN(&out, _Ctype_int(output.size)), nil
   	}
     return "", os.NewSyscallError(fmt.Sprintf( "A severe error (%d) occurred.\n", int(rc) ), int(rc))
 }
