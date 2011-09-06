@@ -8,18 +8,34 @@
 	"buffers":
 	[
 		{
-			"file": "/Users/bendavies/Projects/gohtmltidy/main.go",
+			"file": "/Users/bendavies/Projects/GoTidy/Makefile",
 			"settings":
 			{
-				"buffer_size": 1414,
+				"buffer_size": 198,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/bendavies/Projects/gohtmltidy/Makefile",
+			"file": "/Users/bendavies/Projects/GoTidy/main.go",
 			"settings":
 			{
-				"buffer_size": 134,
+				"buffer_size": 1529,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/bendavies/Projects/GoTidy/example/Makefile",
+			"settings":
+			{
+				"buffer_size": 96,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/bendavies/Projects/GoTidy/example/main.go",
+			"settings":
+			{
+				"buffer_size": 198,
 				"line_ending": "Unix"
 			}
 		}
@@ -153,18 +169,25 @@
 		"whole_word": false,
 		"wrap": true
 	},
+	"folders":
+	{
+		"mount_points":
+		[
+			"/Users/bendavies/Projects/GoTidy"
+		]
+	},
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/Users/bendavies/Projects/gohtmltidy/main.go",
+					"file": "/Users/bendavies/Projects/GoTidy/Makefile",
 					"settings":
 					{
-						"buffer_size": 1414,
+						"buffer_size": 198,
 						"regions":
 						{
 						},
@@ -172,7 +195,33 @@
 						[
 							[
 								0,
-								1414
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Makefile/Makefile.tmLanguage"
+						},
+						"translation.x": 0,
+						"translation.y": 0,
+						"zoom_level": 1
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/bendavies/Projects/GoTidy/main.go",
+					"settings":
+					{
+						"buffer_size": 1529,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
 							]
 						],
 						"settings":
@@ -184,26 +233,58 @@
 						"zoom_level": 1
 					},
 					"type": "text"
-				},
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
 				{
-					"buffer": 1,
-					"file": "/Users/bendavies/Projects/gohtmltidy/Makefile",
+					"buffer": 2,
+					"file": "/Users/bendavies/Projects/GoTidy/example/Makefile",
 					"settings":
 					{
-						"buffer_size": 134,
+						"buffer_size": 96,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								134,
+								0,
 								0
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Makefile/Makefile.tmLanguage"
+						},
+						"translation.x": 0,
+						"translation.y": 0,
+						"zoom_level": 1
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/Users/bendavies/Projects/GoTidy/example/main.go",
+					"settings":
+					{
+						"buffer_size": 198,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Go/Go.tmLanguage"
 						},
 						"translation.x": 0,
 						"translation.y": 0,
@@ -231,11 +312,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0,
+			0.5,
 			1
 		],
 		"rows":
