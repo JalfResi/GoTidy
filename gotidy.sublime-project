@@ -19,7 +19,7 @@
 			"file": "/Users/bendavies/Projects/GoTidy/main.go",
 			"settings":
 			{
-				"buffer_size": 1529,
+				"buffer_size": 1523,
 				"line_ending": "Unix"
 			}
 		},
@@ -57,12 +57,18 @@
 	{
 		"menu_visible": true,
 		"show_minimap": false,
-		"show_tabs": false,
+		"show_tabs": true,
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
 	"file_history":
 	[
+		"/Users/bendavies/Projects/GoTidy/README.markdown",
+		"/Users/bendavies/Projects/GoTidy/README",
+		"/Users/bendavies/go/src/cmd/cgo/out.go",
+		"/Users/bendavies/go/src/cmd/cgo/util.go",
+		"/Users/bendavies/go/src/cmd/cgo/main.go",
+		"/Users/bendavies/go/src/cmd/cgo/doc.go",
 		"/Users/bendavies/Projects/nuseagent/homepageTemplate.go",
 		"/Users/bendavies/Projects/nuseagent/datamappers/ConfigDatamapper.go",
 		"/Users/bendavies/Projects/nuseagent/javascript/firehose.js",
@@ -148,6 +154,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"GoString",
 			"cs",
 			"img",
 			"sqlCreateNewsItemTable",
@@ -213,33 +220,28 @@
 					"file": "/Users/bendavies/Projects/GoTidy/main.go",
 					"settings":
 					{
-						"buffer_size": 1529,
+						"buffer_size": 1523,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								328,
-								328
+								586,
+								586
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Go/Go.tmLanguage"
+							"syntax": "Packages/Go/Go.tmLanguage",
+							"word_wrap": false
 						},
 						"translation.x": 0,
-						"translation.y": 440,
+						"translation.y": 239,
 						"zoom_level": 1
 					},
 					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 1,
-			"sheets":
-			[
+				},
 				{
 					"buffer": 2,
 					"file": "/Users/bendavies/Projects/GoTidy/example/Makefile",
@@ -278,8 +280,8 @@
 						"selection":
 						[
 							[
-								0,
-								0
+								44,
+								38
 							]
 						],
 						"settings":
@@ -312,18 +314,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0,
-			0.5,
 			1
 		],
 		"rows":
@@ -333,6 +328,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 346.6640625
+	},
 	"replace":
 	{
 		"height": 0
