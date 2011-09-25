@@ -1,0 +1,389 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/Users/bendavies/Projects/GoTidy/Makefile",
+			"settings":
+			{
+				"buffer_size": 213,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/bendavies/Projects/GoTidy/main.go",
+			"settings":
+			{
+				"buffer_size": 2864,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "package tidy\n\n/*\n#cgo CFLAGS: -I/usr/include\n#include <tidy.h>\n#include <buffio.h>\n#include <errno.h>\n*/\nimport \"C\"\nimport (\n	\"os\"\n	\"unsafe\"\n)\n\n// HTML, XHTML, XML Options\n\nfunc (this *Tidy) AddXmlDecl(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyXmlDecl, CBool(val))\n}\n\nfunc (this *Tidy) AddXmlSpace(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyXmlSpace, CBool(val))\n}\n\nfunc (this *Tidy) AltText(val string) (bool, os.Error) {\n	return this.optSetString(C.TidyXmlSpace, (*_Ctypedef_tmbchar)(C.CString(val)))\n}\n\nfunc (this *Tidy) AnchorAsName(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyAnchorAsName, CBool(val))\n}\n\nfunc (this *Tidy) AssumeXmlProcins(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyXmlPIs, CBool(val))\n}\n\nfunc (this *Tidy) Bare(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyMakeBare, CBool(val))\n}\n\nfunc (this *Tidy) Clean(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyMakeClean, CBool(val))\n}\n\nfunc (this *Tidy) CssPrefix(val string) (bool, os.Error) {\n	return this.optSetString(C.TidyCSSPrefix, (*_Ctypedef_tmbchar)(C.CString(val)))\n}\n\nfunc (this *Tidy) DecorateInferredUl(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyDecorateInferredUL, CBool(val))\n}\n\nfunc (this *Tidy) Doctype(val string) (bool, os.Error) {\n	var dtmode C.TidyDoctypeModes\n	switch val {\n		case \"auto\":\n			dtmode = C.TidyDoctypeAuto\n		case \"omit\":\n			dtmode = C.TidyDoctypeOmit\n		case \"strict\":\n			dtmode = C.TidyDoctypeStrict\n		case \"loose\", \"transitional\":\n			dtmode = C.TidyDoctypeLoose\n	}\n	return this.optSetInt(C.TidyDoctype, (_Ctypedef_ulong)(dtmode))\n}\n\nfunc (this *Tidy) DropEmptyParas(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyDropEmptyParas, CBool(val))\n}\n\nfunc (this *Tidy) DropFontTags(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyDropFontTags, CBool(val))\n}\n\nfunc (this *Tidy) DropProprietaryAttributes(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyDropPropAttrs, CBool(val))\n}\n\nfunc (this *Tidy) EncloseBlockText(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyEncloseBlockText, CBool(val))\n}\n\nfunc (this *Tidy) EncloseText(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyEncloseBodyText, CBool(val))\n}\n\nfunc (this *Tidy) EscapeCdata(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyEscapeCdata, CBool(val))\n}\n\nfunc (this *Tidy) FixBackslash(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyFixBackslash, CBool(val))\n}\n\nfunc (this *Tidy) FixBadComments(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyFixComments, CBool(val))\n}\n\nfunc (this *Tidy) FixUri(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyFixUri, CBool(val))\n}\n\nfunc (this *Tidy) HideComments(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyHideComments, CBool(val))\n}\n\nfunc (this *Tidy) HideEndtags(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyHideEndTags, CBool(val))\n}\n\nfunc (this *Tidy) IndentCdata(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyIndentCdata, CBool(val))\n}\n\nfunc (this *Tidy) InputXml(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyXmlTags, CBool(val))\n}\n\nfunc (this *Tidy) JoinClasses(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyJoinClasses, CBool(val))\n}\n\nfunc (this *Tidy) JoinStyles(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyJoinStyles, CBool(val))\n}\n\nfunc (this *Tidy) LiteralAttributes(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyLiteralAttribs, CBool(val))\n}\n\nfunc (this *Tidy) LogicalEmphasis(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyLogicalEmphasis, CBool(val))\n}\n\nfunc (this *Tidy) LowerLiterals(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyLowerLiterals, CBool(val))\n}\n\nfunc (this *Tidy) MergeDivs(val string) (bool, os.Error) {\n	\n}\n\nfunc (this *Tidy) Ncr(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyNCR, CBool(val))\n}\n\nfunc (this *Tidy) NumericEntities(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyNumEntities, CBool(val))\n}\n\nfunc (this *Tidy) OutputHtml(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyHtmlOut, CBool(val))\n}\n\nfunc (this *Tidy) OutputXhtml(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyXhtmlOut, CBool(val))\n}\n\nfunc (this *Tidy) OutputXml(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyXmlOut, CBool(val))\n}\n\nfunc (this *Tidy) PreserveEntities(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyPreserveEntities, CBool(val))\n}\n\nfunc (this *Tidy) QuoteAmpersand(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyQuoteAmpersand, CBool(val))\n}\n\nfunc (this *Tidy) QuoteMarks(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyQuoteMarks, CBool(val))\n}\n\nfunc (this *Tidy) QuoteNbsp(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyQuoteNbsp, CBool(val))\n}\n\nfunc (this *Tidy) ReplaceColor(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyReplaceColor, CBool(val))\n}\n\nfunc (this *Tidy) UppercaseAttributes(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyUpperCaseAttrs, CBool(val))\n}\n\nfunc (this *Tidy) UppercaseTags(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyUpperCaseTags, CBool(val))\n}\n\nfunc (this *Tidy) Word2000(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyWord2000, CBool(val))\n}\n\n// Diagnostics Options\n\nfunc (this *Tidy) ShowWarnings(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyShowWarnings, CBool(val))\n}\n\n// Pretty Print Options\n\nfunc (this *Tidy) BreakBeforeBr(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyBreakBeforeBR, CBool(val))\n}\n\nfunc (this *Tidy) IndentAttributes(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyIndentAttributes, CBool(val))\n}\n\nfunc (this *Tidy) Markup(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyShowMarkup, CBool(val))\n}\n\nfunc (this *Tidy) PunctuationWrap(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyPunctWrap, CBool(val))\n}\n\nfunc (this *Tidy) Split(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyBurstSlides, CBool(val))\n}\n\nfunc (this *Tidy) VerticalSpace(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyVertSpace, CBool(val))\n}\n\nfunc (this *Tidy) WrapAsp(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyWrapAsp, CBool(val))\n}\n\nfunc (this *Tidy) WrapAttributes(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyWrapAttVals, CBool(val))\n}\n\nfunc (this *Tidy) WrapJste(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyWrapJste, CBool(val))\n}\n\nfunc (this *Tidy) WrapPhp(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyWrapPhp, CBool(val))\n}\n\nfunc (this *Tidy) WrapScriptLiterals(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyWrapScriptlets, CBool(val))\n}\n\nfunc (this *Tidy) WrapSections(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyWrapSection, CBool(val))\n}\n\n// Character Encoding Options\n\nfunc (this *Tidy) AsciiChars(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyAsciiChars, CBool(val))\n}\n\nfunc (this *Tidy) Language(val string) (bool, os.Error) {\n	return this.optSetString(C.TidyLanguage, (*_Ctypedef_tmbchar)(C.CString(val)))\n}\n\n// Miscellaneous Options\n\nfunc (this *Tidy) ErrorFile(val string) (bool, os.Error) {\n	return this.optSetString(C.TidyErrFile, (*_Ctypedef_tmbchar)(C.CString(val)))\n}\n\nfunc (this *Tidy) ForceOutput(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyForceOutput, CBool(val))\n}\n\nfunc (this *Tidy) GnuEmacs(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyEmacs, CBool(val))\n}\n\nfunc (this *Tidy) GnuEmacsFile(val string) (bool, os.Error) {\n	return this.optSetString(C.TidyEmacsFile, (*_Ctypedef_tmbchar)(C.CString(val)))\n}\n\nfunc (this *Tidy) KeepTime(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyKeepFileTimes, CBool(val))\n}\n\nfunc (this *Tidy) OutputFile(val string) (bool, os.Error) {\n	return this.optSetString(C.TidyOutFile, (*_Ctypedef_tmbchar)(C.CString(val)))\n}\n\nfunc (this *Tidy) Quiet(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyQuiet, CBool(val))\n}\n\nfunc (this *Tidy) SlideStyle(val string) (bool, os.Error) {\n	return this.optSetString(C.TidySlideStyle, (*_Ctypedef_tmbchar)(C.CString(val)))\n}\n\nfunc (this *Tidy) TidyMark(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyMark, CBool(val))\n}\n\nfunc (this *Tidy) WriteBack(val bool) (bool, os.Error) {\n	return this.optSetBool(C.TidyWriteBack, CBool(val))\n}\n\n\nfunc (this *Tidy) optSetAutoBool(opt C.TidyOptionId, val _Ctypedef_ulong) (bool, os.Error) {\n\n}\n\n\nfunc (this *Tidy) optSetString(opt C.TidyOptionId, val *_Ctypedef_tmbchar) (bool, os.Error) {\n	if C.tidyOptSetValue(this.tdoc, opt, val) == 1 {\n		return false, nil	\n	}\n	return true, nil		\n}\n\nfunc (this *Tidy) optSetInt(opt C.TidyOptionId, val _Ctypedef_ulong) (bool, os.Error) {\n	if C.tidyOptSetInt(this.tdoc, opt, val) == 1 {\n		return false, nil	\n	}\n	return true, nil		\n}\n\nfunc (this *Tidy) optSetBool(opt C.TidyOptionId, val C.Bool) (bool, os.Error) {\n	var rc C.int = -1\n	if C.tidyOptSetBool(this.tdoc, opt, val) == 1 {\n		rc = C.tidySetErrorBuffer(this.tdoc, &this.errbuf)	// Capture diagnostics\n		if rc != 0 {\n			return false, os.NewError( C.GoStringN( (*C.char)(unsafe.Pointer(this.errbuf.bp)), C.int(this.errbuf.size) ))\n		}\n	}\n	return true, nil\n}\n\nfunc CBool(val bool) C.Bool {\n	var v uint32 = 0\n	if val {\n		v = 1\n	}\n	return C.Bool(v)\n}\n",
+			"file": "/Users/bendavies/Projects/GoTidy/options.go",
+			"settings":
+			{
+				"buffer_size": 9435,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/bendavies/Projects/GoTidy/example/Makefile",
+			"settings":
+			{
+				"buffer_size": 96,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/bendavies/Projects/GoTidy/example/main.go",
+			"settings":
+			{
+				"buffer_size": 198,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/User/GoMake.sublime-build",
+	"command_palette":
+	{
+		"height": 392,
+		"selected_items":
+		[
+		],
+		"width": 392
+	},
+	"console":
+	{
+		"height": 122
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": true,
+		"show_tabs": true,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/bendavies/Library/Application Support/Sublime Text 2/Packages/User/GoMake.sublime-build",
+		"/Users/bendavies/Library/Application Support/Sublime Text 2/Packages/Default/Global.sublime-settings",
+		"/Users/bendavies/Projects/GoTidy/consts.go",
+		"/Users/bendavies/Projects/GoTidy/README.markdown",
+		"/Users/bendavies/Projects/GoTidy/README",
+		"/Users/bendavies/go/src/cmd/cgo/out.go",
+		"/Users/bendavies/go/src/cmd/cgo/util.go",
+		"/Users/bendavies/go/src/cmd/cgo/main.go",
+		"/Users/bendavies/go/src/cmd/cgo/doc.go",
+		"/Users/bendavies/Projects/nuseagent/homepageTemplate.go",
+		"/Users/bendavies/Projects/nuseagent/datamappers/ConfigDatamapper.go",
+		"/Users/bendavies/Projects/nuseagent/javascript/firehose.js",
+		"/Users/bendavies/Projects/nuseagent/controllers/HomepageController.go",
+		"/Users/bendavies/Projects/nuseagent/controllers/ConfigController.go",
+		"/Users/bendavies/Projects/nuseagent/controllers/FeedsController.go",
+		"/Users/bendavies/Projects/nuseagent/models/Hub.go",
+		"/Users/bendavies/Projects/nuseagent/datamappers/FeedDatamapper.go",
+		"/Users/bendavies/Projects/nuseagent/controllers/WebsocketController.go",
+		"/Users/bendavies/Projects/nuseagent/sql/sql.go",
+		"/Users/bendavies/Documents/NuseAgent UI/index.html",
+		"/Users/bendavies/Documents/NuseAgent UI/css/fontsitesans.css",
+		"/Users/bendavies/Documents/NuseAgent UI/css/baseline.css",
+		"/Users/bendavies/Projects/nuseagent/packages/readabilty/readability.py",
+		"/Users/bendavies/Projects/nuseagent/packages/readabilty/readability.go",
+		"/Users/bendavies/Documents/Blog Articles/ixdbauhaus.txt",
+		"/Users/bendavies/Projects/nuseagent/TODO.md",
+		"/Users/bendavies/Projects/nuseagent/packages/readabilty/example/main.go",
+		"/Users/bendavies/Projects/nuseagent/models/FeedItem.go",
+		"/Users/bendavies/Projects/nuseagent/models/FeedManager.go",
+		"/Users/bendavies/Projects/nuseagent/datamappers/NewsArticlesDatamapper.go",
+		"/Users/bendavies/Projects/nuseagent/Makefile",
+		"/Users/bendavies/Projects/nuseagent/datamappers/DataMapperInterface.go",
+		"/Users/bendavies/Projects/nuseagent/services/NewsService.go",
+		"/Users/bendavies/Projects/nuseagent/models/NewsItem.go",
+		"/Users/bendavies/Projects/nuseagent/datamappers/SQLiteDataMapper.go",
+		"/Users/bendavies/Projects/nuseagent/models/Config.go",
+		"/Users/bendavies/Projects/nuseagent/services/FeedService.go",
+		"/Users/bendavies/Projects/nuseagent/services/ConfigService.go",
+		"/Users/bendavies/Projects/nuseagent/templates/home.htm",
+		"/Users/bendavies/Projects/nuseagent/datamappers/Database.go",
+		"/Users/bendavies/Projects/nuseagent/models/FavIcon.go",
+		"/Users/bendavies/Projects/nuseagent/main.go",
+		"/Users/bendavies/Projects/godom/node.go",
+		"/Users/bendavies/Projects/nuseagent/packages/readabilty/example/test.html",
+		"/Users/bendavies/Projects/nuseagent/packages/readabilty/Readability-php.go",
+		"/Users/bendavies/Projects/nuseagent/packages/readabilty/example/Makefile",
+		"/Users/bendavies/Projects/godom/core_interfaces.go",
+		"/Users/bendavies/Projects/godom/nodelists.go",
+		"/Users/bendavies/Projects/godom/dom.go",
+		"/Users/bendavies/Projects/godom/text.go",
+		"/Users/bendavies/Projects/godom/characterdata.go",
+		"/Users/bendavies/Projects/gosqlite/sqlite/sqlite.go",
+		"/Users/bendavies/Projects/godom/document.go",
+		"/Users/bendavies/Downloads/Readability.php",
+		"/Users/bendavies/Projects/nuseagent/packages/readabilty/Makefile",
+		"/Users/bendavies/Projects/nuseagent/packages/readabilty/Readability.go",
+		"/Users/bendavies/Library/Application Support/Sublime Text 2/Packages/User/Global.sublime-settings",
+		"/Users/bendavies/Projects/nuseagent/services/Readability.go",
+		"/Users/bendavies/Projects/nuseagent/templates/item.htm",
+		"/Users/bendavies/Desktop/perspective.html",
+		"/Users/bendavies/Projects/nuseagent/TODO.txt",
+		"/Users/bendavies/Desktop/newsitem.sql",
+		"/Users/bendavies/Projects/nuseagent/controllers/NewTemplateHandler.go",
+		"/Users/bendavies/Projects/godom/attr.go",
+		"/Users/bendavies/Projects/godom/element.go",
+		"/Users/bendavies/Projects/godom/comment.go",
+		"/Users/bendavies/Library/Application Support/Sublime Text 2/Packages/Makefile/Make.sublime-build",
+		"/Users/bendavies/Library/Application Support/Sublime Text 2/Packages/User/gomake.sublime-build"
+	],
+	"find":
+	{
+		"height": 33
+	},
+	"find_in_files":
+	{
+		"height": 86,
+		"include_history":
+		[
+			"*.*",
+			""
+		],
+		"location_history":
+		[
+			"/Users/bendavies/Projects/nuseagent",
+			"/Users/bendavies/Projects/godom"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"GoString",
+			"cs",
+			"img",
+			"sqlCreateNewsItemTable",
+			"feedManager",
+			"\n\nFeedManager",
+			"reflect.Typeof	",
+			"Text"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer": false,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/Users/bendavies/Projects/GoTidy/Makefile",
+					"settings":
+					{
+						"buffer_size": 213,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								65,
+								65
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Makefile/Makefile.tmLanguage"
+						},
+						"translation.x": 0,
+						"translation.y": 0,
+						"zoom_level": 1
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/bendavies/Projects/GoTidy/main.go",
+					"settings":
+					{
+						"buffer_size": 2864,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								451,
+								441
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Go/Go.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0,
+						"translation.y": 1195,
+						"zoom_level": 1
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/bendavies/Projects/GoTidy/options.go",
+					"settings":
+					{
+						"buffer_size": 9435,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3853,
+								3853
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Go/Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0,
+						"translation.y": 1672,
+						"zoom_level": 1
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/Users/bendavies/Projects/GoTidy/example/Makefile",
+					"settings":
+					{
+						"buffer_size": 96,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Makefile/Makefile.tmLanguage"
+						},
+						"translation.x": 0,
+						"translation.y": 0,
+						"zoom_level": 1
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/Users/bendavies/Projects/GoTidy/example/main.go",
+					"settings":
+					{
+						"buffer_size": 198,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								44,
+								38
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Go/Go.tmLanguage"
+						},
+						"translation.x": 0,
+						"translation.y": 0,
+						"zoom_level": 1
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0
+	},
+	"input":
+	{
+		"height": 28
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0,
+			1
+		],
+		"rows":
+		[
+			0,
+			1
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0,
+		"selected_items":
+		[
+		],
+		"width": 0
+	},
+	"select_project":
+	{
+		"height": 500,
+		"selected_items":
+		[
+		],
+		"width": 380
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 253,
+	"status_bar_visible": true
+}

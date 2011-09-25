@@ -137,6 +137,14 @@ func (this *Tidy) LowerLiterals(val bool) (bool, os.Error) {
 	return this.optSetBool(C.TidyLowerLiterals, CBool(val))
 }
 
+func (this *Tidy) MergeDivs(val int) (bool, os.Error) {
+	return this.optSetAutoBool(C.TidyMergeDivs, (_Ctypedef_ulong)(val))
+}
+
+func (this *Tidy) MergeSpans(val int) (bool, os.Error) {
+	return this.optSetAutoBool(C.TidyMergeSpans, (_Ctypedef_ulong)(val))
+}
+
 func (this *Tidy) Ncr(val bool) (bool, os.Error) {
 	return this.optSetBool(C.TidyNCR, CBool(val))
 }
@@ -177,6 +185,10 @@ func (this *Tidy) ReplaceColor(val bool) (bool, os.Error) {
 	return this.optSetBool(C.TidyReplaceColor, CBool(val))
 }
 
+func (this *Tidy) ShowBodyOnly(val int) (bool, os.Error) {
+	return this.optSetAutoBool(C.TidyBodyOnly, (_Ctypedef_ulong)(val))
+}
+
 func (this *Tidy) UppercaseAttributes(val bool) (bool, os.Error) {
 	return this.optSetBool(C.TidyUpperCaseAttrs, CBool(val))
 }
@@ -199,6 +211,10 @@ func (this *Tidy) ShowWarnings(val bool) (bool, os.Error) {
 
 func (this *Tidy) BreakBeforeBr(val bool) (bool, os.Error) {
 	return this.optSetBool(C.TidyBreakBeforeBR, CBool(val))
+}
+
+func (this *Tidy) Indent(val int) (bool, os.Error) {
+	return this.optSetAutoBool(C.TidyIndentContent, (_Ctypedef_ulong)(val))
 }
 
 func (this *Tidy) IndentAttributes(val bool) (bool, os.Error) {
@@ -255,6 +271,10 @@ func (this *Tidy) Language(val string) (bool, os.Error) {
 	return this.optSetString(C.TidyLanguage, (*_Ctypedef_tmbchar)(C.CString(val)))
 }
 
+func (this *Tidy) OutputBom(val int) (bool, os.Error) {
+	return this.optSetAutoBool(C.TidyOutputBOM, (_Ctypedef_ulong)(val))
+}
+
 // Miscellaneous Options
 
 func (this *Tidy) ErrorFile(val string) (bool, os.Error) {
@@ -297,10 +317,18 @@ func (this *Tidy) WriteBack(val bool) (bool, os.Error) {
 	return this.optSetBool(C.TidyWriteBack, CBool(val))
 }
 
-/*
-func (this *Tidy) optSetAutoBool(opt C.TidyOptionId, val C.Bool) (bool, os.Error) {
+const autobool_false _Ctypedef_ulong = 0
+const autobool_true _Ctypedef_ulong = 1
+const autobool_auto _Ctypedef_ulong = 2
+
+func (this *Tidy) optSetAutoBool(opt C.TidyOptionId, val _Ctypedef_ulong) (bool, os.Error) {
+	switch val {
+		case autobool_false, autobool_true, autobool_auto:
+			return this.optSetInt(C.TidyMergeDivs, val)
+	}
+	return false, os.NewError("Argument val int is out of range (0,1,2)")
 }
-*/
+
 
 func (this *Tidy) optSetString(opt C.TidyOptionId, val *_Ctypedef_tmbchar) (bool, os.Error) {
 	if C.tidyOptSetValue(this.tdoc, opt, val) == 1 {

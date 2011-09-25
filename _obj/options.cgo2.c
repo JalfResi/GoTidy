@@ -25,7 +25,7 @@ __cgo_size_assert(double, 8)
 #include <string.h>
 
 void
-_cgo_538ef28dfb4f_Cfunc_tidyOptSetValue(void *v)
+_cgo_367ebb668c7c_Cfunc_tidyOptSetValue(void *v)
 {
 	struct {
 		struct _TidyDoc* p0;
@@ -39,7 +39,7 @@ _cgo_538ef28dfb4f_Cfunc_tidyOptSetValue(void *v)
 }
 
 void
-_cgo_538ef28dfb4f_Cfunc_tidyOptSetInt(void *v)
+_cgo_367ebb668c7c_Cfunc_tidyOptSetInt(void *v)
 {
 	struct {
 		struct _TidyDoc* p0;
