@@ -158,6 +158,22 @@ func (this *Tidy) Ncr(val bool) (bool, os.Error) {
 	return this.optSetBool(C.TidyNCR, CBool(val))
 }
 
+func (this *Tidy) NewBlocklevelTags(val string) (bool, os.Error) {
+	return this.optSetString(C.TidyBlockTags, (*_Ctypedef_tmbchar)(C.CString(val)))
+}
+
+func (this *Tidy) NewEmptyTags(val string) (bool, os.Error) {
+	return this.optSetString(C.TidyEmptyTags, (*_Ctypedef_tmbchar)(C.CString(val)))
+}
+
+func (this *Tidy) NewInlineTags(val string) (bool, os.Error) {
+	return this.optSetString(C.TidyInlineTags, (*_Ctypedef_tmbchar)(C.CString(val)))
+}
+
+func (this *Tidy) NewPreTags(val string) (bool, os.Error) {
+	return this.optSetString(C.TidyPreTags, (*_Ctypedef_tmbchar)(C.CString(val)))
+}
+
 func (this *Tidy) NumericEntities(val bool) (bool, os.Error) {
 	return this.optSetBool(C.TidyNumEntities, CBool(val))
 }
