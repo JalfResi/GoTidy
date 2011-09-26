@@ -10,6 +10,7 @@ import "C"
 import (
 	"os"
 	"unsafe"
+	"log"
 )
 
 // HTML, XHTML, XML Options
@@ -61,8 +62,10 @@ func (this *Tidy) Doctype(val string) (bool, os.Error) {
 			dtmode = C.TidyDoctypeStrict
 		case "loose", "transitional":
 			dtmode = C.TidyDoctypeLoose
+		default:
+			dtmode = val
 	}
-	return this.optSetInt(C.TidyDoctype, (_Ctypedef_ulong)(dtmode))
+	return this.optSetString(C.TidyDoctype, (*_Ctypedef_tmbchar)(C.CString(val)))
 }
 
 func (this *Tidy) DropEmptyParas(val bool) (bool, os.Error) {
@@ -324,7 +327,7 @@ const autobool_auto _Ctypedef_ulong = 2
 func (this *Tidy) optSetAutoBool(opt C.TidyOptionId, val _Ctypedef_ulong) (bool, os.Error) {
 	switch val {
 		case autobool_false, autobool_true, autobool_auto:
-			return this.optSetInt(C.TidyMergeDivs, val)
+			return this.optSetInt(opt, val)
 	}
 	return false, os.NewError("Argument val int is out of range (0,1,2)")
 }
@@ -338,6 +341,7 @@ func (this *Tidy) optSetString(opt C.TidyOptionId, val *_Ctypedef_tmbchar) (bool
 }
 
 func (this *Tidy) optSetInt(opt C.TidyOptionId, val _Ctypedef_ulong) (bool, os.Error) {
+	log.Println(opt, val)
 	if C.tidyOptSetInt(this.tdoc, opt, val) == 1 {
 		return false, nil	
 	}

@@ -7,6 +7,7 @@ package tidy
 import (
 	"os"
 	"unsafe"
+	"log"
 )
 
 
@@ -47,6 +48,8 @@ func (this *Tidy) DecorateInferredUl(val bool) (bool, os.Error) {
 }
 
 func (this *Tidy) Doctype(val string) (bool, os.Error) {
+	log.Println(val)
+	log.Println(_Cconst_TidyDoctypeAuto, _Cconst_TidyDoctypeOmit, _Cconst_TidyDoctypeStrict, _Cconst_TidyDoctypeLoose)
 	var dtmode _Ctypedef_TidyDoctypeModes
 	switch val {
 	case "auto":
@@ -58,7 +61,8 @@ func (this *Tidy) Doctype(val string) (bool, os.Error) {
 	case "loose", "transitional":
 		dtmode = _Cconst_TidyDoctypeLoose
 	}
-	return this.optSetInt(_Cconst_TidyDoctype, (_Ctypedef_ulong)(dtmode))
+	log.Println(dtmode, (_Ctypedef_ulong)(dtmode))
+	return this.optSetString(_Cconst_TidyDoctype, (*_Ctypedef_tmbchar)(_Cfunc_CString(val)))
 }
 
 func (this *Tidy) DropEmptyParas(val bool) (bool, os.Error) {
@@ -316,7 +320,7 @@ const autobool_auto _Ctypedef_ulong = 2
 func (this *Tidy) optSetAutoBool(opt _Ctypedef_TidyOptionId, val _Ctypedef_ulong) (bool, os.Error) {
 	switch val {
 	case autobool_false, autobool_true, autobool_auto:
-		return this.optSetInt(_Cconst_TidyMergeDivs, val)
+		return this.optSetInt(opt, val)
 	}
 	return false, os.NewError("Argument val int is out of range (0,1,2)")
 }
@@ -330,6 +334,7 @@ func (this *Tidy) optSetString(opt _Ctypedef_TidyOptionId, val *_Ctypedef_tmbcha
 }
 
 func (this *Tidy) optSetInt(opt _Ctypedef_TidyOptionId, val _Ctypedef_ulong) (bool, os.Error) {
+	log.Println(opt, val)
 	if _Cfunc_tidyOptSetInt(this.tdoc, opt, val) == 1 {
 		return false, nil
 	}

@@ -35,9 +35,11 @@ func (this *Tidy) Tidy(htmlSource string) (string, os.Error) {
 
 	var output C.TidyBuffer
 	defer C.tidyBufFree(&output)
-	
+
 	var rc C.int = -1
-	
+
+	rc = C.tidySetErrorBuffer( this.tdoc, &this.errbuf )	// Capture diagnostics
+
 	if rc >= 0 {
     	rc = C.tidyParseString( this.tdoc, (*_Ctypedef_tmbchar)(input) )	// Parse the input
     }
