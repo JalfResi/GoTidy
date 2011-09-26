@@ -21,7 +21,8 @@ func main() {
 	defer t.Free()
 
 	t.TidyMark(false)
-	t.Doctype("strict")
+	t.Doctype("omit")
+	t.MergeDivs(tidy.False)
 
 	output, err := t.Tidy("<title>Foo</title><p>Foo!")
 	if err != nil {

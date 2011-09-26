@@ -13,6 +13,10 @@ import (
 	"log"
 )
 
+const False int = 0
+const True int = 1
+const Auto int = 2
+
 // HTML, XHTML, XML Options
 
 func (this *Tidy) AddXmlDecl(val bool) (bool, os.Error) {
@@ -52,6 +56,7 @@ func (this *Tidy) DecorateInferredUl(val bool) (bool, os.Error) {
 }
 
 func (this *Tidy) Doctype(val string) (bool, os.Error) {
+	/*
 	var dtmode C.TidyDoctypeModes
 	switch val {
 		case "auto":
@@ -65,6 +70,7 @@ func (this *Tidy) Doctype(val string) (bool, os.Error) {
 		default:
 			dtmode = val
 	}
+	*/
 	return this.optSetString(C.TidyDoctype, (*_Ctypedef_tmbchar)(C.CString(val)))
 }
 
@@ -320,13 +326,13 @@ func (this *Tidy) WriteBack(val bool) (bool, os.Error) {
 	return this.optSetBool(C.TidyWriteBack, CBool(val))
 }
 
-const autobool_false _Ctypedef_ulong = 0
-const autobool_true _Ctypedef_ulong = 1
-const autobool_auto _Ctypedef_ulong = 2
+const Autobool_false _Ctypedef_ulong = 0
+const Autobool_true _Ctypedef_ulong = 1
+const Autobool_auto _Ctypedef_ulong = 2
 
 func (this *Tidy) optSetAutoBool(opt C.TidyOptionId, val _Ctypedef_ulong) (bool, os.Error) {
 	switch val {
-		case autobool_false, autobool_true, autobool_auto:
+		case Autobool_false, Autobool_true, Autobool_auto:
 			return this.optSetInt(opt, val)
 	}
 	return false, os.NewError("Argument val int is out of range (0,1,2)")
