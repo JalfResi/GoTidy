@@ -27,8 +27,12 @@ func main() {
 	t.Indent(tidy.True)
 	t.IndentSpaces(8)
 	t.Wrap(10)
+	t.RepeatedAttributes(tidy.KeepFirst)
+	t.AccessibilityCheck(tidy.Priority3Checks)
+	t.SortAttributes(tidy.Alpha)
+	t.Newline(tidy.LF)
 
-	output, err := t.Tidy("<title>Foo</title><p>Foo!")
+	output, err := t.Tidy("<title id='bob' class='frank'>Foo</title><p>Foo!")
 	if err != nil {
 		fmt.Println(output)
 		log.Fatal(err)

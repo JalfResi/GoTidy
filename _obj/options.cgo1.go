@@ -187,6 +187,17 @@ func (this *Tidy) QuoteNbsp(val bool) (bool, os.Error) {
 	return this.optSetBool(_Cconst_TidyQuoteNbsp, CBool(val))
 }
 
+const KeepFirst int = 0
+const KeepLast int = 1
+
+func (this *Tidy) RepeatedAttributes(val int) (bool, os.Error) {
+	switch val {
+	case KeepFirst, KeepLast:
+		return this.optSetInt(_Cconst_TidyDuplicateAttrs, (_Ctypedef_ulong)(val))
+	}
+	return false, os.NewError("Argument val int is out of range (0,1)")
+}
+
 func (this *Tidy) ReplaceColor(val bool) (bool, os.Error) {
 	return this.optSetBool(_Cconst_TidyReplaceColor, CBool(val))
 }
@@ -207,6 +218,19 @@ func (this *Tidy) Word2000(val bool) (bool, os.Error) {
 	return this.optSetBool(_Cconst_TidyWord2000, CBool(val))
 }
 
+
+const TidyClassic int = 0
+const Priority1Checks int = 1
+const Priority2Checks int = 2
+const Priority3Checks int = 3
+
+func (this *Tidy) AccessibilityCheck(val int) (bool, os.Error) {
+	switch val {
+	case TidyClassic, Priority1Checks, Priority2Checks, Priority3Checks:
+		return this.optSetInt(_Cconst_TidyAccessibilityCheckLevel, (_Ctypedef_ulong)(val))
+	}
+	return false, os.NewError("Argument val int is out of range (0,1,2,3)")
+}
 
 func (this *Tidy) ShowWarnings(val bool) (bool, os.Error) {
 	return this.optSetBool(_Cconst_TidyShowWarnings, CBool(val))
@@ -239,6 +263,17 @@ func (this *Tidy) Markup(val bool) (bool, os.Error) {
 
 func (this *Tidy) PunctuationWrap(val bool) (bool, os.Error) {
 	return this.optSetBool(_Cconst_TidyPunctWrap, CBool(val))
+}
+
+const None int = 0
+const Alpha int = 1
+
+func (this *Tidy) SortAttributes(val int) (bool, os.Error) {
+	switch val {
+	case None, Alpha:
+		return this.optSetInt(_Cconst_TidySortAttributes, (_Ctypedef_ulong)(val))
+	}
+	return false, os.NewError("Argument val int is out of range (0,1)")
 }
 
 func (this *Tidy) Split(val bool) (bool, os.Error) {
@@ -288,6 +323,18 @@ func (this *Tidy) AsciiChars(val bool) (bool, os.Error) {
 
 func (this *Tidy) Language(val string) (bool, os.Error) {
 	return this.optSetString(_Cconst_TidyLanguage, (*_Ctypedef_tmbchar)(_Cfunc_CString(val)))
+}
+
+const LF int = 0
+const CRLF int = 1
+const CR int = 2
+
+func (this *Tidy) Newline(val int) (bool, os.Error) {
+	switch val {
+	case LF, CRLF, CR:
+		return this.optSetInt(_Cconst_TidyNewline, (_Ctypedef_ulong)(val))
+	}
+	return false, os.NewError("Argument val int is out of range (0,1,2)")
 }
 
 func (this *Tidy) OutputBom(val int) (bool, os.Error) {
