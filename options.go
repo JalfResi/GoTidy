@@ -10,7 +10,6 @@ import "C"
 import (
 	"os"
 	"unsafe"
-	"log"
 )
 
 const False int = 0
@@ -232,6 +231,10 @@ func (this *Tidy) ShowWarnings(val bool) (bool, os.Error) {
 	return this.optSetBool(C.TidyShowWarnings, CBool(val))
 }
 
+func (this *Tidy) ShowErrors(val int) (bool, os.Error) {
+	return this.optSetInt(C.TidyShowErrors, (_Ctypedef_ulong)(val))
+}
+
 // Pretty Print Options
 
 func (this *Tidy) BreakBeforeBr(val bool) (bool, os.Error) {
@@ -246,6 +249,10 @@ func (this *Tidy) IndentAttributes(val bool) (bool, os.Error) {
 	return this.optSetBool(C.TidyIndentAttributes, CBool(val))
 }
 
+func (this *Tidy) IndentSpaces(val int) (bool, os.Error) {
+	return this.optSetInt(C.TidyIndentSpaces, (_Ctypedef_ulong)(val))
+}
+
 func (this *Tidy) Markup(val bool) (bool, os.Error) {
 	return this.optSetBool(C.TidyShowMarkup, CBool(val))
 }
@@ -258,8 +265,16 @@ func (this *Tidy) Split(val bool) (bool, os.Error) {
 	return this.optSetBool(C.TidyBurstSlides, CBool(val))
 }
 
+func (this *Tidy) TabSize(val int) (bool, os.Error) {
+	return this.optSetInt(C.TidyTabSize, (_Ctypedef_ulong)(val))
+}
+
 func (this *Tidy) VerticalSpace(val bool) (bool, os.Error) {
 	return this.optSetBool(C.TidyVertSpace, CBool(val))
+}
+
+func (this *Tidy) Wrap(val int) (bool, os.Error) {
+	return this.optSetInt(C.TidyWrapLen, (_Ctypedef_ulong)(val))
 }
 
 func (this *Tidy) WrapAsp(val bool) (bool, os.Error) {
@@ -363,7 +378,6 @@ func (this *Tidy) optSetString(opt C.TidyOptionId, val *_Ctypedef_tmbchar) (bool
 }
 
 func (this *Tidy) optSetInt(opt C.TidyOptionId, val _Ctypedef_ulong) (bool, os.Error) {
-	log.Println(opt, val)
 	if C.tidyOptSetInt(this.tdoc, opt, val) == 1 {
 		return false, nil	
 	}

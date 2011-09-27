@@ -21,8 +21,12 @@ func main() {
 	defer t.Free()
 
 	t.TidyMark(false)
-	t.Doctype("omit")
+	t.Doctype("strict")
 	t.MergeDivs(tidy.False)
+	t.NewBlocklevelTags("DIV")
+	t.Indent(tidy.True)
+	t.IndentSpaces(8)
+	t.Wrap(10)
 
 	output, err := t.Tidy("<title>Foo</title><p>Foo!")
 	if err != nil {
