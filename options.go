@@ -342,6 +342,37 @@ func (this *Tidy) AsciiChars(val bool) (bool, os.Error) {
 	return this.optSetBool(C.TidyAsciiChars, CBool(val))
 }
 
+const Raw int  = 0
+const Ascii int = 1
+const Latin0 int = 2
+const Latin1 int = 3
+const Utf8 int = 4
+const Iso2022 int = 5
+const Mac int = 6
+const Win1252 int = 7
+const Ibm858 int = 8
+const Utf16le int = 9
+const Utf16be int = 10
+const Utf16 int = 11
+const Big5 int = 12
+const Shiftjis int = 13
+
+func (this *Tidy) CharEncoding(val int) (bool, os.Error) {
+	switch val {
+		case Raw, Ascii, Latin0, Latin1, Utf8, Iso2022, Mac, Win1252, Ibm858, Utf16le, Utf16be, Utf16, Big5, Shiftjis:
+			return this.optSetInt(C.TidyCharEncoding, (_Ctypedef_ulong)(val))
+	}
+	return false, os.NewError("Argument val int is out of range (0-13)")
+}
+
+func (this *Tidy) InputEncoding(val int) (bool, os.Error) {
+	switch val {
+		case Raw, Ascii, Latin0, Latin1, Utf8, Iso2022, Mac, Win1252, Ibm858, Utf16le, Utf16be, Utf16, Big5, Shiftjis:
+			return this.optSetInt(C.TidyInCharEncoding, (_Ctypedef_ulong)(val))
+	}
+	return false, os.NewError("Argument val int is out of range (0-13)")
+}
+
 func (this *Tidy) Language(val string) (bool, os.Error) {
 	return this.optSetString(C.TidyLanguage, (*_Ctypedef_tmbchar)(C.CString(val)))
 }
@@ -360,6 +391,14 @@ func (this *Tidy) Newline(val int) (bool, os.Error) {
 
 func (this *Tidy) OutputBom(val int) (bool, os.Error) {
 	return this.optSetAutoBool(C.TidyOutputBOM, (_Ctypedef_ulong)(val))
+}
+
+func (this *Tidy) OutputEncoding(val int) (bool, os.Error) {
+	switch val {
+		case Raw, Ascii, Latin0, Latin1, Utf8, Iso2022, Mac, Win1252, Ibm858, Utf16le, Utf16be, Utf16, Big5, Shiftjis:
+			return this.optSetInt(C.TidyOutCharEncoding, (_Ctypedef_ulong)(val))
+	}
+	return false, os.NewError("Argument val int is out of range (0-13)")
 }
 
 // Miscellaneous Options

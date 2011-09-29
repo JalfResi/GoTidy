@@ -31,8 +31,9 @@ func main() {
 	t.AccessibilityCheck(tidy.Priority3Checks)
 	t.SortAttributes(tidy.Alpha)
 	t.Newline(tidy.LF)
+	t.CharEncoding(tidy.Raw)
 
-	output, err := t.Tidy("<title id='bob' class='frank'>Foo</title><p>Foo!")
+	output, err := t.Tidy("<title id='bob' class='frank'>Hello, 世界</title><p>Foo!")
 	if err != nil {
 		fmt.Println(output)
 		log.Fatal(err)
