@@ -30,7 +30,9 @@ func (this *Tidy) AddXmlSpace(val bool) (bool, os.Error) {
 
 // This option specifies the default "alt=" text Tidy uses for <IMG> attributes. This feature is dangerous as it suppresses further accessibility warnings. You are responsible for making your documents accessible to people who can not see the images!
 func (this *Tidy) AltText(val string) (bool, os.Error) {
-	return this.optSetString(C.TidyXmlSpace, (*_Ctypedef_tmbchar)(C.CString(val)))
+	v := (*_Ctypedef_tmbchar)(C.CString(val))
+	defer C.free(unsafe.Pointer(v))
+	return this.optSetString(C.TidyXmlSpace, v)
 }
 
 // This option controls the deletion or addition of the name attribute in elements where it can serve as anchor. If set to "true", a name attribute, if not already existing, is added along an existing id attribute if the DTD allows it. If set to "false", any existing name attribute is removed if an id attribute exists or has been added.
@@ -55,7 +57,9 @@ func (this *Tidy) Clean(val bool) (bool, os.Error) {
 
 // This option specifies the prefix that Tidy uses for styles rules. By default, "c" will be used.
 func (this *Tidy) CssPrefix(val string) (bool, os.Error) {
-	return this.optSetString(C.TidyCSSPrefix, (*_Ctypedef_tmbchar)(C.CString(val)))
+	v := (*_Ctypedef_tmbchar)(C.CString(val))
+	defer C.free(unsafe.Pointer(v))
+	return this.optSetString(C.TidyCSSPrefix, v)
 }
 
 // This option specifies if Tidy should decorate inferred UL elements with some CSS markup to avoid indentation to the right.
@@ -70,7 +74,9 @@ func (this *Tidy) DecorateInferredUl(val bool) (bool, os.Error) {
 //
 // If you specify the FPI for an XHTML document, Tidy will set the system identifier to an empty string. For an HTML document, Tidy adds a system identifier only if one was already present in order to preserve the processing mode of some browsers. Tidy leaves the DOCTYPE for generic XML documents unchanged. --doctype omit implies --numeric-entities yes. This option does not offer a validation of the document conformance.
 func (this *Tidy) Doctype(val string) (bool, os.Error) {
-	return this.optSetString(C.TidyDoctype, (*_Ctypedef_tmbchar)(C.CString(val)))
+	v := (*_Ctypedef_tmbchar)(C.CString(val))
+	defer C.free(unsafe.Pointer(v))	
+	return this.optSetString(C.TidyDoctype, v)
 }
 
 // This option specifies if Tidy should discard empty paragraphs.
@@ -180,22 +186,30 @@ func (this *Tidy) Ncr(val bool) (bool, os.Error) {
 
 // This option specifies new block-level tags. This option takes a space or comma separated list of tag names. Unless you declare new tags, Tidy will refuse to generate a tidied file if the input includes previously unknown tags. Note you can't change the content model for elements such as <TABLE>, <UL>, <OL> and <DL>. This option is ignored in XML mode.
 func (this *Tidy) NewBlocklevelTags(val string) (bool, os.Error) {
-	return this.optSetString(C.TidyBlockTags, (*_Ctypedef_tmbchar)(C.CString(val)))
+	v := (*_Ctypedef_tmbchar)(C.CString(val))
+	defer C.free(unsafe.Pointer(v))	
+	return this.optSetString(C.TidyBlockTags, v)
 }
 
 // This option specifies new empty inline tags. This option takes a space or comma separated list of tag names. Unless you declare new tags, Tidy will refuse to generate a tidied file if the input includes previously unknown tags. Remember to also declare empty tags as either inline or blocklevel. This option is ignored in XML mode.
 func (this *Tidy) NewEmptyTags(val string) (bool, os.Error) {
-	return this.optSetString(C.TidyEmptyTags, (*_Ctypedef_tmbchar)(C.CString(val)))
+	v := (*_Ctypedef_tmbchar)(C.CString(val))
+	defer C.free(unsafe.Pointer(v))	
+	return this.optSetString(C.TidyEmptyTags, v)
 }
 
 // This option specifies new non-empty inline tags. This option takes a space or comma separated list of tag names. Unless you declare new tags, Tidy will refuse to generate a tidied file if the input includes previously unknown tags. This option is ignored in XML mode.
 func (this *Tidy) NewInlineTags(val string) (bool, os.Error) {
-	return this.optSetString(C.TidyInlineTags, (*_Ctypedef_tmbchar)(C.CString(val)))
+	v := (*_Ctypedef_tmbchar)(C.CString(val))
+	defer C.free(unsafe.Pointer(v))	
+	return this.optSetString(C.TidyInlineTags, v)
 }
 
 // This option specifies new tags that are to be processed in exactly the same way as HTML's <PRE> element. This option takes a space or comma separated list of tag names. Unless you declare new tags, Tidy will refuse to generate a tidied file if the input includes previously unknown tags. Note you can not as yet add new CDATA elements (similar to <SCRIPT>). This option is ignored in XML mode.
 func (this *Tidy) NewPreTags(val string) (bool, os.Error) {
-	return this.optSetString(C.TidyPreTags, (*_Ctypedef_tmbchar)(C.CString(val)))
+	v := (*_Ctypedef_tmbchar)(C.CString(val))
+	defer C.free(unsafe.Pointer(v))
+	return this.optSetString(C.TidyPreTags, v)
 }
 
 // This option specifies if Tidy should output entities other than the built-in HTML entities (&amp;, &lt;, &gt; and &quot;) in the numeric rather than the named entity form. Only entities compatible with the DOCTYPE declaration generated are used. Entities that can be represented in the output encoding are translated correspondingly.
@@ -437,7 +451,9 @@ func (this *Tidy) InputEncoding(val int) (bool, os.Error) {
 
 // Currently not used, but this option specifies the language Tidy uses (for instance "en").
 func (this *Tidy) Language(val string) (bool, os.Error) {
-	return this.optSetString(C.TidyLanguage, (*_Ctypedef_tmbchar)(C.CString(val)))
+	v := (*_Ctypedef_tmbchar)(C.CString(val))
+	defer C.free(unsafe.Pointer(v))
+	return this.optSetString(C.TidyLanguage, v)
 }
 
 const LF int = 0
@@ -471,7 +487,9 @@ func (this *Tidy) OutputEncoding(val int) (bool, os.Error) {
 
 // This option specifies the error file Tidy uses for errors and warnings. Normally errors and warnings are output to "stderr".
 func (this *Tidy) ErrorFile(val string) (bool, os.Error) {
-	return this.optSetString(C.TidyErrFile, (*_Ctypedef_tmbchar)(C.CString(val)))
+	v := (*_Ctypedef_tmbchar)(C.CString(val))
+	defer C.free(unsafe.Pointer(v))
+	return this.optSetString(C.TidyErrFile, v)
 }
 
 // This option specifies if Tidy should produce output even if errors are encountered. Use this option with care - if Tidy reports an error, this means Tidy was not able to, or is not sure how to, fix the error, so the resulting output may not reflect your intention.
@@ -486,7 +504,9 @@ func (this *Tidy) GnuEmacs(val bool) (bool, os.Error) {
 
 // Used internally.
 func (this *Tidy) GnuEmacsFile(val string) (bool, os.Error) {
-	return this.optSetString(C.TidyEmacsFile, (*_Ctypedef_tmbchar)(C.CString(val)))
+	v := (*_Ctypedef_tmbchar)(C.CString(val))
+	defer C.free(unsafe.Pointer(v))
+	return this.optSetString(C.TidyEmacsFile, v)
 }
 
 // This option specifies if Tidy should keep the original modification time of files that Tidy modifies in place. The default is no. Setting the option to yes allows you to tidy files without causing these files to be uploaded to a web server when using a tool such as SiteCopy. Note this feature is not supported on some platforms.
@@ -496,7 +516,9 @@ func (this *Tidy) KeepTime(val bool) (bool, os.Error) {
 
 // This option specifies the output file Tidy uses for markup. Normally markup is written to "stdout".
 func (this *Tidy) OutputFile(val string) (bool, os.Error) {
-	return this.optSetString(C.TidyOutFile, (*_Ctypedef_tmbchar)(C.CString(val)))
+	v := (*_Ctypedef_tmbchar)(C.CString(val))
+	defer C.free(unsafe.Pointer(v))
+	return this.optSetString(C.TidyOutFile, v)
 }
 
 // This option specifies if Tidy should output the summary of the numbers of errors and warnings, or the welcome or informational messages.
@@ -506,7 +528,9 @@ func (this *Tidy) Quiet(val bool) (bool, os.Error) {
 
 // Currently not used. Tidy Classic only.
 func (this *Tidy) SlideStyle(val string) (bool, os.Error) {
-	return this.optSetString(C.TidySlideStyle, (*_Ctypedef_tmbchar)(C.CString(val)))
+	v := (*_Ctypedef_tmbchar)(C.CString(val))
+	defer C.free(unsafe.Pointer(v))
+	return this.optSetString(C.TidySlideStyle, v)
 }
 
 // This option specifies if Tidy should add a meta element to the document head to indicate that the document has been tidied. Tidy won't add a meta element if one is already present.
