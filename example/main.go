@@ -53,8 +53,7 @@ func main() {
 */
 	output, err := t.Tidy("<title id='bob' class='frank'>Welcome</title><p>Hello, 世界</p><p>Foo!")
 	if err != nil {
-		fmt.Println(output)
-		log.Fatal(err)
+		log.Fatal(err, output)
 	}
 	fmt.Println(output)
 }
