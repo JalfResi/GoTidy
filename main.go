@@ -72,6 +72,7 @@ func (this *Tidy) Tidy(htmlSource string) (string, os.Error) {
     return "", os.NewSyscallError(fmt.Sprintf( "A severe error (%d) occurred.\n", int(rc) ), int(rc))		
 }
 
+/*
 func TidyHtml(htmlSource string) (string, os.Error) {
 	input := C.CString(htmlSource)
 	defer C.free(unsafe.Pointer(input))
@@ -124,3 +125,4 @@ func TidyHtml(htmlSource string) (string, os.Error) {
   	}
     return "", os.NewSyscallError(fmt.Sprintf( "A severe error (%d) occurred.\n", int(rc) ), int(rc))
 }
+*/
