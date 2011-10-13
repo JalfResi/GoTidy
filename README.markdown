@@ -7,18 +7,24 @@ Simple package that wraps [libtidy](http://tidy.sourceforge.net/).
 	package main
 
 	import (
+		"fmt"
+		"log"
 		"tidy"
 	)
 
 	func main() {
+
+		// Create an instance of Tidy
 		t := tidy.New()
 		defer t.Free()
 
+		// Set our options
 		t.OutputXml(true)
 		t.AddXmlDecl(true)
 		t.QuoteAmpersand(true)
 		t.TidyMark(false)
 
+		// Tidy our source HTML!
 		output, err := t.Tidy("<title id='bob' class='frank'>Welcome</title><p>Hello, 世界</p><p>Foo!")
 		if err != nil {
 			log.Fatal(err, output)
