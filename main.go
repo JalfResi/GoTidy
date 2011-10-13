@@ -1,3 +1,4 @@
+// GoTidy is a cGo wrapper around libtidy
 package tidy
 
 /*
