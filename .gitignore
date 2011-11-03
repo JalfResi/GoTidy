@@ -1,4 +1,10 @@
 
+.DS_Store
+
+options.cgo2.o
+
+_obj/
+
 example/.DS_Store
 
 main.cgo2.o
@@ -52,3 +58,17 @@ _test/tidy.a
 _testmain.6
 
 _testmain.go
+
+options.cgo2.o
+
+options.cgo2.o
+
+gotidy.sublime-workspace
+
+_obj/options.cgo2.c
+
+_obj/options.cgo1.go
+
+_obj/options.cgo2.c
+
+_obj/options.cgo1.go
