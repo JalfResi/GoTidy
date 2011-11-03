@@ -72,3 +72,5 @@ _obj/options.cgo1.go
 _obj/options.cgo2.c
 
 _obj/options.cgo1.go
+
+gotidy.sublime-project
