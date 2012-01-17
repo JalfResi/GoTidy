@@ -1,12 +1,21 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
+	"io/ioutil"
+	"os"
 	"tidy"
 )
 
+var (
+	debug  *bool = flag.Bool("debug", false, "Output debuggin messages")  
+)
+
 func main() {
+	flag.Parse()
+
 	t := tidy.New()
 	defer t.Free()
 
@@ -26,8 +35,9 @@ func main() {
 	t.JoinStyles(true)
 	t.ShowBodyOnly(tidy.True)
 
-	output, err := t.Tidy("<title id='bob' class='frank'>Welcome</title><p>Hello, 世界</p><p>Foo!")
-	if err != nil {
+	in, _ := ioutil.ReadAll(os.Stdin)
+	output, err := t.Tidy(string(in))
+	if *debug == true && err != nil {
 		log.Fatal(err, output)
 	}
 	fmt.Println(output)
