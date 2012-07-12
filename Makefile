@@ -1,6 +1,6 @@
 include $(GOROOT)/src/Make.inc
 
-TARG=tidy
+TARG=ourscienceistight/tidy
 CGOFILES=\
    main.go\
    options.go\

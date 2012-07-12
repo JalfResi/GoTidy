@@ -6,7 +6,7 @@ import (
 	"log"
 	"io/ioutil"
 	"os"
-	"tidy"
+	"ourscienceistight/tidy"
 )
 
 var (
@@ -20,7 +20,7 @@ func main() {
 	defer t.Free()
 
 	t.OutputXml(true)
-	t.AddXmlDecl(true)
+	t.AddXmlDecl(false)
 	t.QuoteAmpersand(true)
 	t.TidyMark(false)
 	t.CharEncoding(tidy.Utf8)
