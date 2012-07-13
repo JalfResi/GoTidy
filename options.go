@@ -2,6 +2,7 @@ package tidy
 
 /*
 #cgo CFLAGS: -I/usr/include
+#cgo CFLAGS: -I-/usr/include/tidy
 #cgo LDFLAGS: -ltidy -L/usr/local/lib 
 #include <tidy.h>
 #include <buffio.h>
