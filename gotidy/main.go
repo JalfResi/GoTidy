@@ -6,11 +6,11 @@ import (
 	"log"
 	"io/ioutil"
 	"os"
-	"ourscienceistight/tidy"
+	"github.com/JalfResi/GoTidy"
 )
 
 var (
-	debug  *bool = flag.Bool("debug", false, "Output debuggin messages")  
+	debug  *bool = flag.Bool("debug", false, "Output debugging messages")  
 )
 
 func main() {
