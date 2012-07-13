@@ -2,6 +2,22 @@ GoTidy
 ======
 Simple package that wraps [libtidy](http://tidy.sourceforge.net/).
 
+## Install Package
+
+	go get github.com/JalfResi/GoTidy
+
+And import into your program like so:
+
+	import "github.com/JalfResi/GoTidy"
+
+## Install Example Binary
+
+	go get github.com/JalfResi/GoTidy/gotidy
+
+Example usage of example binary:
+
+	$ echo "<html><body><p>Rad" | gotidy
+
 ## Example
 
 	package main
@@ -9,7 +25,7 @@ Simple package that wraps [libtidy](http://tidy.sourceforge.net/).
 	import (
 		"fmt"
 		"log"
-		"tidy"
+		"github.com/JalfResi/GoTidy"
 	)
 
 	func main() {
