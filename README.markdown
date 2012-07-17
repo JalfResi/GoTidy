@@ -60,7 +60,7 @@ This is relatively easy to do. Simply download the Tidy source code, and compile
 	sh build/gnuauto/setup.sh && ./configure && make
 	make install
 
-Note that you will either need to run make install as root, or with sudo make install.
+Note that you will either need to run `make install` as root, or with `sudo make install`.
 
 Thanks
 ------
