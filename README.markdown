@@ -3,6 +3,7 @@ GoTidy
 Simple package that wraps [libtidy](http://tidy.sourceforge.net/).
 
 ## Install Package
+GoTidy uses CGO to link to Libtidy. Libtidy must be a shared library. OSX Lion comes with Libtidy, but it is a static library which will cause all sorts of problems. See below about compiling Tidy as a shared library under OSX.
 
 	go get github.com/JalfResi/GoTidy
 
@@ -51,7 +52,16 @@ Example usage of example binary:
 The package if very straight forward: simply create an instance of Tidy using New(), set the options you want and
 then call the Tidy() instance method, passing it the string of HTML to tidy. The Tidy() method returns the output
 (if any) and maybe an Error object.
-	
+
+Compiling Libtidy as a shared library under OSX
+-----------------------------------------------
+This is relatively easy to do. Simply download the Tidy source code, and compile as per the following instructions. This has been known to work under OSX Lion.
+
+	sh build/gnuauto/setup.sh && ./configure && make
+	make install
+
+Note that you will either need to run make install as root, or with sudo make install.
+
 Thanks
 ------
 Thanks obviously to Dave Raggett for the awesome HTML Tidy library.
