@@ -1,59 +1,75 @@
 package tidy
 
 import (
-	. "gopkg.in/check.v1"
+	"strings"
 	"testing"
 )
 
-// Hook up gocheck into the gotest runner.
-func Test(t *testing.T) { TestingT(t) }
+var corruptedHtml string = "<title id='bob' class='frank'>Hello, 世界</title><p>Foo!"
 
-type S struct{}
-var _ = Suite(&S{})
-
-
-func (s *S) TestTidy(c *C) {
+func Test_Tidy(t *testing.T) {
 	tdy := New()
 	defer tdy.Free()
 
-	var output string
-	var html string = "<title id='bob' class='frank'>Hello, 世界</title><p>Foo!"
-	var match string = "<html>\n<head>\n<meta name=\"generator\" content=\n\"HTML Tidy for Mac OS X (vers 25 March 2009), see www.w3.org\">\n<title id='bob' class='frank'>Hello,\n&#228;&#184;&#241;&#231;&#239;&#229;</title>\n</head>\n<body>\n<p>Foo!</p>\n</body>\n</html>\n"
+	output, _ := tdy.Tidy(corruptedHtml)
 
-	output, _ = tdy.Tidy(html)
-	c.Check(output, Matches, match)
+	if !strings.HasPrefix(output, "<html>") {
+		t.Errorf("Unable to fix corrupted HTML")
+	}
 }
 
-func (s *S) TestAddXmlDecl(c *C) {
+func Test_AddXmlDecl(t *testing.T) {
 	tdy := New()
 	defer tdy.Free()
 
 	var output string
-	html := "<title id='bob' class='frank'>Hello, 世界</title><p>Foo!"
-	match := "^<?xml.*"
 
+	tdy.OutputXml(true)
 	tdy.AddXmlDecl(true)
-	output, _ = tdy.Tidy(html)
-	c.Check(output, Matches, match)
+	output, _ = tdy.Tidy(corruptedHtml)
+
+	if !strings.HasPrefix(output, "<?xml") {
+		t.Errorf("XML declaration was not added")
+	}
 
 	tdy.AddXmlDecl(false)
-	output, _ = tdy.Tidy(html)
-	c.Check(output, Not(Matches), match)
+	output, _ = tdy.Tidy(corruptedHtml)
+	if strings.HasPrefix(output, "<?xml") {
+		t.Errorf("XML declaration must be omitted")
+	}
 }
 
-func (s *S) TestTidyMark(c *C) {
+func Test_TidyMark(t *testing.T) {
 	tdy := New()
 	defer tdy.Free()
 
 	var output string
-	html := "<title id='bob' class='frank'>Hello, 世界</title><p>Foo!"
-	match := "<meta name=\"generator\" content=\"HTML Tidy for Mac OS X"
 
 	tdy.TidyMark(true)
-	output, _ = tdy.Tidy(html)
-	c.Check(output, Matches, match)
+	output, _ = tdy.Tidy(corruptedHtml)
+
+	if !strings.Contains(output, "HTML Tidy for") {
+		t.Errorf("Tidy mark was not added")
+	}
 
 	tdy.TidyMark(false)
-	output, _ = tdy.Tidy(html)
-	c.Check(output, Not(Matches), match)
+	output, _ = tdy.Tidy(corruptedHtml)
+	if strings.Contains(output, "HTML Tidy for") {
+		t.Errorf("Tidy mark must be omitted")
+	}
+}
+
+func Test_Multibyte(t *testing.T) {
+	tdy := New()
+	defer tdy.Free()
+
+	var output string
+
+	tdy.InputEncoding(Utf8)
+	tdy.OutputEncoding(Utf8)
+	output, _ = tdy.Tidy(corruptedHtml)
+
+	if !strings.Contains(output, "世界") {
+		t.Errorf("The output is not in UTF-8 or unicode symbols were encoded")
+	}
 }

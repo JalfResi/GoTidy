@@ -36,11 +36,6 @@ func (this *Tidy) AltText(val string) (bool, error) {
 	return this.optSetString(C.TidyXmlSpace, v)
 }
 
-// This option controls the deletion or addition of the name attribute in elements where it can serve as anchor. If set to "true", a name attribute, if not already existing, is added along an existing id attribute if the DTD allows it. If set to "false", any existing name attribute is removed if an id attribute exists or has been added.
-func (this *Tidy) AnchorAsName(val bool) (bool, error) {
-	return this.optSetBool(C.TidyAnchorAsName, cBool(val))
-}
-
 // This option specifies if Tidy should change the parsing of processing instructions to require ?> as the terminator rather than >. This option is automatically set if the input is in XML.
 func (this *Tidy) AssumeXmlProcins(val bool) (bool, error) {
 	return this.optSetBool(C.TidyXmlPIs, cBool(val))
@@ -175,11 +170,6 @@ func (this *Tidy) MergeDivs(val int) (bool, error) {
 	return this.optSetAutoBool(C.TidyMergeDivs, (C.ulong)(val))
 }
 
-// Can be used to modify behavior of -c (--clean yes) option. This option specifies if Tidy should merge nested <span> such as "<span><span>...</span></span>". The algorithm is identical to the one used by --merge-divs.
-func (this *Tidy) MergeSpans(val int) (bool, error) {
-	return this.optSetAutoBool(C.TidyMergeSpans, (C.ulong)(val))
-}
-
 // This option specifies if Tidy should allow numeric character references.
 func (this *Tidy) Ncr(val bool) (bool, error) {
 	return this.optSetBool(C.TidyNCR, cBool(val))
@@ -231,11 +221,6 @@ func (this *Tidy) OutputXhtml(val bool) (bool, error) {
 // This option specifies if Tidy should pretty print output, writing it as well-formed XML. Any entities not defined in XML 1.0 will be written as numeric entities to allow them to be parsed by a XML parser. The original case of tags and attributes will be preserved, regardless of other options.
 func (this *Tidy) OutputXml(val bool) (bool, error) {
 	return this.optSetBool(C.TidyXmlOut, cBool(val))
-}
-
-// This option specifies if Tidy should preserve the well-formed entitites as found in the input.
-func (this *Tidy) PreserveEntities(val bool) (bool, error) {
-	return this.optSetBool(C.TidyPreserveEntities, cBool(val))
 }
 
 // This option specifies if Tidy should output unadorned & characters as &amp;.
@@ -350,15 +335,6 @@ func (this *Tidy) PunctuationWrap(val bool) (bool, error) {
 
 const None int = 0
 const Alpha int = 1
-
-// This option specifies that tidy should sort attributes within an element using the specified sort algorithm. If set to "alpha", the algorithm is an ascending alphabetic sort.
-func (this *Tidy) SortAttributes(val int) (bool, error) {
-	switch val {
-	case None, Alpha:
-		return this.optSetInt(C.TidySortAttributes, (C.ulong)(val))
-	}
-	return false, errors.New("Argument val int is out of range (0,1)")
-}
 
 // Currently not used. Tidy Classic only.
 func (this *Tidy) Split(val bool) (bool, error) {
