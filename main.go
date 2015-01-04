@@ -2,8 +2,7 @@
 package tidy
 
 /*
-#cgo darwin CFLAGS: -I/usr/include
-#cgo linux CFLAGS: -I/usr/include/tidy
+#cgo CFLAGS: -I/usr/include/tidy
 #cgo LDFLAGS: -ltidy -L/usr/local/lib
 #include <tidy.h>
 #include <buffio.h>
