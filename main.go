@@ -48,7 +48,7 @@ func (this *Tidy) Tidy(htmlSource string) (string, error) {
 	}
 
 	if rc >= 0 {
-		rc = C.tidyCleanAndRepair(this.tdoc) // Tidy it up!	
+		rc = C.tidyCleanAndRepair(this.tdoc) // Tidy it up!
 	}
 
 	if rc >= 0 {
